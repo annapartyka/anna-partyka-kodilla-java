@@ -1,4 +1,24 @@
 package com.kodilla.exception.io;
 
-public class FileReaderWithoutHandling {
+import com.kodilla.exception.io.FileReader;
+
+import com.sun.org.apache.xpath.internal.SourceTree;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
+
+
+public class FileReaderWithoutHandling{
+
+    public void readFile() throws IOException {
+
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource("file/names.txt").getFile());
+
+        Stream<String> fileLines = Files.lines(Paths.get(file.getPath()));
+        fileLines.forEach(System.out::println);
+
+    }
 }

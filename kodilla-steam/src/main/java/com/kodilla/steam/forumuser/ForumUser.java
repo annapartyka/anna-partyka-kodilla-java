@@ -69,5 +69,6 @@ public final class ForumUser {
                 ", dateOfBirth=" + dateOfBirth +
                 ", numberOfPosts=" + numberOfPosts +
                 '}';
+
     }
 }

@@ -8,7 +8,6 @@ import com.kodilla.steam.forumuser.ForumUser;
 import com.kodilla.steam.iterate.NumbersGenerator;
 import com.kodilla.steam.lambda.ExpressionExecutor;
 import com.kodilla.steam.reference.FunctionalCalculator;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
@@ -17,8 +16,25 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 
+
 public class SteamMain {
     public static void main(String[] args) {
+
+        Forum theForum = new Forum();
+
+        Map<Integer, ForumUser> theMapOfForumUsers = theForum.getUserList().stream()
+                .filter(forumUser -> forumUser.getSex() == 'M')
+                .filter(forumUser -> forumUser.getNumberOfPosts() >= 1)
+               // .filter(forumUser -> forumUser.getDateOfBirth().getYear() )
+                //tu wstawić odfiltrowanie tych, co mają co najmniej 20 lat
+                .collect(Collectors.toMap(ForumUser::getUserId, forumUser -> forumUser));
+
+        theMapOfForumUsers.entrySet().stream()
+                .map(entry -> entry.getKey() + ": " + entry.getValue())
+                .forEach(System.out::println);
+    }
+}
+
 //        ExpressionExecutor expressionExecutor = new ExpressionExecutor();
 //        System.out.println("Calculating expressions with lambdas");
 //        expressionExecutor.executeExpression(10,5,(a,b)-> a + b);
@@ -56,20 +72,3 @@ public class SteamMain {
 //                    .collect(Collectors.joining(",\n","<<", ">>"));
 //        System.out.println(theResutStringOfBooks);
 
-        Forum theForum = new Forum();
-        Map<Integer, ForumUser> theMapOfForumUsers = theForum.getUserList().stream()
-                .filter(forumUser -> forumUser.getSex() == 'M')
-                .filter(forumUser -> forumUser.getNumberOfPosts() >= 1)
-                .filter(forumUser -> forumUser.getDateOfBirth().getDayOfYear() < 90)
-
-                //tu dodać odfilrowanie tylko tych co mają co najmniej 20 lat
-                .collect(Collectors.toMap(ForumUser::getUserId, forumUser -> forumUser));
-
-                theMapOfForumUsers.entrySet().stream()
-                        .map(entry -> entry.getKey() + ": " + entry.getValue())
-                        .forEach(System.out::println);
-
-
-
-    }
-}
