@@ -7,7 +7,7 @@ import java.util.Set;
 
 
 public class GoodPatternsMain {
-    public static void main (String[] args){
+    public static void main (String[] args) {
 
         MovieStore movieStore = new MovieStore();
 
@@ -16,11 +16,5 @@ public class GoodPatternsMain {
         theListOfMovies.entrySet().stream()
                 .map(entry -> entry.getValue() + "!")
                 .forEach(System.out::print);
-
-
-
-
-
     }
-
 }
