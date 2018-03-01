@@ -2,4 +2,6 @@ include 'kodilla-testing'
 include 'kodilla-steam'
 include 'kodilla-steam'
 include 'kodilla-exception'
+include 'kodilla-googd-patterns'
+include 'kodilla-good-patterns'
 
